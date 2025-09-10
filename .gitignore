@@ -42,3 +42,6 @@ Thumbs.db
 
 # Debug files
 *.tgz
+
+# Ignore package lock
+package-lock.json

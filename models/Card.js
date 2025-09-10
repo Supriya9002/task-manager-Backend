@@ -1,0 +1,58 @@
+const mongoose = require('mongoose');
+
+const CardSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+  },
+  list: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'List',
+    required: true,
+  },
+  position: {
+    type: Number,
+    required: true,
+  },
+  dueDate: {
+    type: Date,
+  },
+  labels: [{
+    type: String,
+  }],
+  attachments: [{
+    filename: String,
+    url: String,
+  }],
+  comments: [{
+    text: String,
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+  }],
+  activity: [{
+    text: String,
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+  }],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+module.exports = mongoose.model('Card', CardSchema);
